@@ -7,5 +7,5 @@
 
 ### To implement 
 * sort on date and time, recently opened first 
-* hightlight currently opened version on the right 
+* ~~hightlight currently opened version on the right~~
 * 
