@@ -10,9 +10,12 @@
 }
 .version_list_item{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
     height: 40px;
+    object-fit: scale-down;
+    font-size: 1em;
     /* background-color: red; */
 }
 
@@ -26,10 +29,12 @@
 
 .version_list_item > span:nth-child(2){
     width : 40%;
+    font-size: 1em;
 }
 
 .version_list_item > span:nth-child(3){
     width : 40%;
+    font-size: 1em;
 }
 
 .version_list_item > button{
@@ -38,7 +43,8 @@
     align-items: center;
     border : none;
     width : 7%;
-    font-size: 1.2em;
+    min-width: 10px;
+    font-size: 1em;
     /* background-color: white; */
 }
 
@@ -48,7 +54,8 @@
     align-items: center;
     border : none;
     width : 7%;
-    font-size: 2em;
+    min-width: 10px;
+    font-size: 1em;
 
     color: rgb(190, 169, 169);
 }
@@ -56,7 +63,7 @@
 .version_list_content{
     text-align: right;
     margin-top: -10px;
-    font-size: 1rem;
+    font-size: 0.92em;
     /* background-color: red; */
     margin-bottom: -10px;
 }

@@ -19,11 +19,10 @@ export function VersionList({ versionList, restoreVersion, setVersions, openedOb
         if (element.title == openedObj.title && element.version == openedObj.date) {
             clearAll()
         }
-        console.log(newList)
         setVersions(prev => [...newList])
 
     }
-    console.log(curElement, versionList, " real list")
+
     return (
         <div className="versions_wrapper">
             <div className="versions_main">

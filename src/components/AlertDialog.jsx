@@ -17,7 +17,6 @@ export default function ResponsiveDialog({ confirmation, setConfirmationAnswer, 
 
     useEffect(() => {
         if (confirmation == true) {
-            console.log(" click an open now inside dialog")
             handleClickOpen()
         }
     }, [confirmation])

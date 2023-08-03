@@ -35,7 +35,6 @@ export function Middle() {
         saveToLocalStorage(versions)
     }, [versions])
 
-    console.log(confirmationAnswer, " < to open dialog", confirmation, " <- to overwirte or not")
     function handleChange(content, delta, source, editor) {
         // content , delta, source, editor
         setPureText(editor.getText())
@@ -45,7 +44,6 @@ export function Middle() {
     function restoreVersion(element) {
         let restoreText = element.content
         let restoreDate = element.version
-        // console.log(restoreText, " inside resotre version ", text)
         setRestoreObj(prev => element)
         //check if the two versions are same or diff
         if (restoreText != text || restoreDate != date) {
@@ -59,7 +57,6 @@ export function Middle() {
         // save the editor content thats collected in state 
         const currDate = new Date().toLocaleDateString();
         const currTime = new Date().toLocaleTimeString();
-        console.log(currDate, currTime)
 
         let versionObj = {
             title: title,
