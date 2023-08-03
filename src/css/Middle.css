@@ -1,0 +1,51 @@
+.middle_wrapper{
+    background-color: rgb(234, 234, 229);
+    height : 86vh;
+    margin-top : 10px;
+    display: flex;
+    justify-content: space-evenly;
+    /* align-items: center; */
+    padding : 1em;
+}
+
+.middle_left_wrapper{
+    width : 65vw;
+    /* background-color: yellow; */
+    /* padding-top : 1em; */
+    padding-right: 1em;
+}
+
+.middle_left_input_wrapper{
+    padding-bottom : 0.4em;
+}
+
+.middle_left_input{
+    border : none;
+    border-bottom: 1px solid black;
+    width : 30%;
+}
+
+.middle_left_editor{
+    background-color: white;
+    height: 60vh;
+    /* padding :1rem; */
+}
+
+.middle_left_button_wrapper{
+    margin-top: 50px;
+    padding: 1em;
+}
+
+.middle_left_button{
+    height : 2.5em;
+    width: 10em;
+}
+
+
+/*  right part of the screen                 ----------------- */
+
+.middle_right_wrapper{
+    width : 30vw;
+    background-color: red;
+}
+

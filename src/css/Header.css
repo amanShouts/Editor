@@ -1,0 +1,9 @@
+.nav{
+    height : 10vh;
+    background-color: blueviolet;
+    /* margin-top: -10px; */
+    color : white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
