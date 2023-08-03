@@ -10,25 +10,25 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { useEffect } from 'react';
 
-export default function ResponsiveDialog({ openDialog, setConfirmationAnswer }) {
-    const [open, setOpen] = React.useState(false);
+export default function ResponsiveDialog({ confirmation, setConfirmationAnswer, setConfirmation }) {
+    // const [open, setOpen] = React.useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
     useEffect(() => {
-        if (openDialog == true) {
+        if (confirmation == true) {
             console.log(" click an open now inside dialog")
             handleClickOpen()
         }
-    }, [openDialog])
+    }, [confirmation])
 
     const handleClickOpen = () => {
-        setOpen(true);
+        setConfirmation(true);
     };
 
     const handleClose = (answer) => {
         setConfirmationAnswer(prev => answer)
-        setOpen(false);
+        setConfirmation(false);
     };
 
     return (
@@ -38,12 +38,12 @@ export default function ResponsiveDialog({ openDialog, setConfirmationAnswer }) 
             </Button> */}
             <Dialog
                 fullScreen={fullScreen}
-                open={open}
+                open={confirmation}
                 onClose={handleClose}
                 aria-labelledby="responsive-dialog-title"
             >
                 <DialogTitle id="responsive-dialog-title">
-                    {"Content MisMatch "}
+                    {"Content MisMatch !!"}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
@@ -52,11 +52,11 @@ export default function ResponsiveDialog({ openDialog, setConfirmationAnswer }) 
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={() => { handleClose(false) }}>
-                        No
-                    </Button>
                     <Button onClick={() => { handleClose(true) }} autoFocus>
                         Yes
+                    </Button>
+                    <Button onClick={() => { handleClose(false) }}>
+                        No
                     </Button>
                 </DialogActions>
             </Dialog>

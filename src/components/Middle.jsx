@@ -8,22 +8,31 @@ import ResponsiveDialog from "./AlertDialog";
 
 export function Middle() {
     const [text, setText] = useState("")
-    const [versions, setVersions] = useState([])
+    const [versions, setVersions] = useState(JSON.parse(localStorage.getItem("memorise_list")) || [])
     const [title, setTitle] = useState("")
     const [confirmation, setConfirmation] = useState(false)
     const [confirmationAnswer, setConfirmationAnswer] = useState(false)
     const [restoreObj, setRestoreObj] = useState({})
 
+
     useEffect(() => {
         if (confirmationAnswer) {
             setText(prev => restoreObj.content)
             setTitle(prev => restoreObj.title)
-            setRestoreObj(prev => { })
+            //clean up
             setConfirmationAnswer(prev => false)
-            setConfirmation(prev => false)
+            setRestoreObj(prev => { })
+            setConfirmation(prev => false) // to open dialog box again
         }
+
     }, [confirmationAnswer])
 
+    //update localstorage whenever document list changes
+    useEffect(() => {
+        saveToLocalStorage(versions)
+    }, [versions])
+
+    console.log(confirmationAnswer, " < to open dialog", confirmation, " <- to overwirte or not")
     function handleChange(content) {
         // content , delta, source, editor
         setText(content)
@@ -31,14 +40,14 @@ export function Middle() {
 
     function restoreVersion(element) {
         let restoreText = element.content
-        console.log(restoreText, " inside resotre version ", text)
+        // console.log(restoreText, " inside resotre version ", text)
         setRestoreObj(prev => element)
         //check if the two versions are same or diff
         if (restoreText != text) {
             // the two versions content are different, ask user 
-            console.log(" yessssssssssssssssssssssssssssss")
             setConfirmation(prev => true)
         }
+
     }
 
     function saveDocument() {
@@ -54,13 +63,18 @@ export function Middle() {
         }
 
         setVersions((prev) => {
-            return [...prev, versionObj]
+            let newList = [...prev, versionObj]
+            return newList
         })
+    }
+
+    function saveToLocalStorage(list) {
+        localStorage.setItem("memorise_list", JSON.stringify(list))
     }
     return (
         <div className="middle_wrapper">
-            {/* {confirmation == true ? <ResponsiveDialog /> : <> </>} */}
-            <ResponsiveDialog openDialog={confirmation} setConfirmationAnswer={setConfirmationAnswer} />
+
+            <ResponsiveDialog confirmation={confirmation} setConfirmationAnswer={setConfirmationAnswer} setConfirmation={setConfirmation} />
             <div className="middle_left_wrapper">
                 <div className="middle_left_input_wrapper">
                     <span className="middle_left_input_texts"> Title : </span>
@@ -76,7 +90,7 @@ export function Middle() {
 
             </div>
             <div className="middle_right_wrapper">
-                <VersionList versionList={versions} restoreVersion={restoreVersion} />
+                <VersionList versionList={versions} restoreVersion={restoreVersion} setVersions={setVersions} />
             </div>
 
         </div>

@@ -1,6 +1,6 @@
 .middle_wrapper{
-    background-color: rgb(234, 234, 229);
-    height : 86vh;
+    background-color: rgb(226, 226, 205);
+    height : 83vh;
     margin-top : 10px;
     display: flex;
     justify-content: space-evenly;
@@ -17,28 +17,49 @@
 
 .middle_left_input_wrapper{
     padding-bottom : 0.4em;
+    margin-bottom: 5px;
 }
 
 .middle_left_input{
     border : none;
     border-bottom: 1px solid black;
     width : 30%;
+    height:18px;
+    font-size: large;
+    padding : 0.2em;
 }
 
 .middle_left_editor{
     background-color: white;
     height: 60vh;
+
     /* padding :1rem; */
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    overflow: hidden;
 }
 
 .middle_left_button_wrapper{
-    margin-top: 50px;
+    margin-top: 30px;
     padding: 1em;
 }
 
 .middle_left_button{
     height : 2.5em;
     width: 10em;
+    border: none;
+    border-radius: 2px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+}
+
+.middle_left_button:hover{
+    height : 2.5em;
+    width: 10em;
+    background-color: grey;
+    border: none;
+    border-radius: 6px;
+    color : white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 
@@ -46,6 +67,8 @@
 
 .middle_right_wrapper{
     width : 30vw;
-    background-color: red;
+    background-color: rgb(223, 247, 223);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    margin-top: -5px;
 }
 
