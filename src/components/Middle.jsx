@@ -8,6 +8,8 @@ import ResponsiveDialog from "./AlertDialog";
 
 export function Middle() {
     const [text, setText] = useState("")
+    const [pureText, setPureText] = useState("")
+    const [date, setDate] = useState("")
     const [versions, setVersions] = useState(JSON.parse(localStorage.getItem("memorise_list")) || [])
     const [title, setTitle] = useState("")
     const [confirmation, setConfirmation] = useState(false)
@@ -19,6 +21,7 @@ export function Middle() {
         if (confirmationAnswer) {
             setText(prev => restoreObj.content)
             setTitle(prev => restoreObj.title)
+            setDate(prev => restoreObj.version)
             //clean up
             setConfirmationAnswer(prev => false)
             setRestoreObj(prev => { })
@@ -33,17 +36,19 @@ export function Middle() {
     }, [versions])
 
     console.log(confirmationAnswer, " < to open dialog", confirmation, " <- to overwirte or not")
-    function handleChange(content) {
+    function handleChange(content, delta, source, editor) {
         // content , delta, source, editor
+        setPureText(editor.getText())
         setText(content)
     }
 
     function restoreVersion(element) {
         let restoreText = element.content
+        let restoreDate = element.version
         // console.log(restoreText, " inside resotre version ", text)
         setRestoreObj(prev => element)
         //check if the two versions are same or diff
-        if (restoreText != text) {
+        if (restoreText != text || restoreDate != date) {
             // the two versions content are different, ask user 
             setConfirmation(prev => true)
         }
@@ -59,9 +64,10 @@ export function Middle() {
         let versionObj = {
             title: title,
             version: currDate + " " + currTime,
-            content: text
+            content: text,
+            pureText: pureText
         }
-
+        setDate(prev => currDate + " " + currTime)
         setVersions((prev) => {
             let newList = [...prev, versionObj]
             return newList
@@ -70,6 +76,13 @@ export function Middle() {
 
     function saveToLocalStorage(list) {
         localStorage.setItem("memorise_list", JSON.stringify(list))
+    }
+
+    function clearAll() {
+        setDate("")
+        setText("")
+        setTitle("")
+        setPureText("")
     }
     return (
         <div className="middle_wrapper">
@@ -90,7 +103,7 @@ export function Middle() {
 
             </div>
             <div className="middle_right_wrapper">
-                <VersionList versionList={versions} restoreVersion={restoreVersion} setVersions={setVersions} />
+                <VersionList versionList={versions} restoreVersion={restoreVersion} setVersions={setVersions} openedObj={{ text, title, date }} clearAll={clearAll} />
             </div>
 
         </div>
